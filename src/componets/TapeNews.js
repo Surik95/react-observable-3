@@ -13,14 +13,13 @@ export default function TapeNews() {
     dispatch(newsRequest(""));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(items, lastId, newsLoad);
   return (
     <div className="containier">
       <div className="news">
         {items.map((item) => (
           <News key={item.id} news={item} />
         ))}
-        {newsLoad && (
+        {newsLoad && items.length > 0 && (
           <button
             onClick={() => {
               dispatch(newsRequest(lastId));

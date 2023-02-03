@@ -8,7 +8,6 @@ export const requestEpic = (action$) =>
     ofType("news/newsRequest"),
     map((o) => o.payload),
     mergeMap((o) => {
-      console.log(o);
       if (o === "") {
         return ajax.getJSON(`http://localhost:7070/api/news`).pipe(
           retry({
@@ -17,7 +16,6 @@ export const requestEpic = (action$) =>
           map((o) => newsSuccess(o))
         );
       } else {
-        console.log(o);
         return ajax
           .getJSON(
             `http://localhost:7070/api/news?${new URLSearchParams({
